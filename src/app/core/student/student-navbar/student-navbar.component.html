@@ -1,0 +1,15 @@
+<div class="flex bg-blue-300 px-2 py-2">
+    <button mat-icon-button (click)="toggleSidenav.emit()">
+        <mat-icon [@iconRotate]="isSidebarOpen ? 'open' : 'closed'">
+          {{ isSidebarOpen ? 'arrow_back' : 'menu' }} 
+        </mat-icon>
+      </button> 
+      
+      <!-- Display user details if we have the data and not loading -->
+      <div *ngIf="data">
+        <p> {{ data.fullName }}</p>
+        <img [src]="data.avatar" class="h-12 w-12 rounded-full" loading="lazy"  alt="">
+      </div>
+      
+      
+</div>
