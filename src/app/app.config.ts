@@ -6,12 +6,16 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LoaderInterceptor } from './interceptors/loading.interceptor';
 
-
+import {
+  provideCharts,
+  withDefaultRegisterables,
+  } from 'ng2-charts';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
     provideAnimationsAsync(),
+    provideCharts(withDefaultRegisterables()),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
   ]

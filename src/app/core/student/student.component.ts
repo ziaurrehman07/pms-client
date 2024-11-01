@@ -8,19 +8,18 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-
-
+import { UserService } from '../../services/users/user.service';
+import { User, UserResponse } from '../../services/users/user.model';
 
 @Component({
   selector: 'app-student',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, StudentSidebarComponent, StudentNavbarComponent, CommonModule,
-    RouterModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatIconModule,],
+  imports: [
+    RouterOutlet, RouterModule, StudentSidebarComponent, StudentNavbarComponent, CommonModule,
+    RouterModule, MatSidenavModule, MatButtonModule, MatIconModule,
+  ],
   templateUrl: './student.component.html',
-  styleUrl: './student.component.scss',
+  styleUrls: ['./student.component.scss'],
   animations: [
     trigger('iconRotate', [
       state('open', style({ transform: 'rotate(0deg)' })),
@@ -33,20 +32,46 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class StudentComponent implements OnInit {
   isMobile: boolean = false;
-  isSidebarOpen: boolean = false;
+  isSidebarOpen: boolean = true;
+  data: User | null = null;
+  errorMessage: string | null = null;
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver, private userService: UserService) {}
 
   ngOnInit(): void {
+    this.loadActiveUsers();
+
+    // Detect if the screen is mobile or desktop
     this.breakpointObserver.observe([Breakpoints.Handset])
       .subscribe(result => {
         this.isMobile = result.matches;
-        this.isSidebarOpen = false;
+        this.isSidebarOpen = !this.isMobile;
       });
   }
 
-  toggleSidebar(sidenav: any) {
+  // Toggle sidebar open/close on button click
+  toggleSidebar(sidenav: any): void {
     sidenav.toggle();
     this.isSidebarOpen = !this.isSidebarOpen;
+  }
+
+  // Close sidebar on link click for mobile only
+  closeSidebarOnLinkClick(sidenav: any): void {
+    if (this.isMobile) {
+      sidenav.close();
+      this.isSidebarOpen = false;
+    }
+  }
+
+  loadActiveUsers(): void {
+    this.userService.getActiveUsers().subscribe({
+      next: (response: UserResponse) => {
+        this.data = response.data;
+      },
+      error: (error) => {
+        this.errorMessage = 'Failed to load users. Please try again later.';
+        console.error('Error:', error);
+      },
+    });
   }
 }

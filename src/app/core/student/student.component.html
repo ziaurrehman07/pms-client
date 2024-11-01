@@ -1,4 +1,4 @@
-<mat-sidenav-container class="h-screen flex">
+<mat-sidenav-container class="h-screen">
     <!-- Sidebar -->
     <mat-sidenav
       #sidenav
@@ -7,8 +7,11 @@
       (openedChange)="isSidebarOpen = $event" 
       class="sidenav"
     >
-      <app-student-sidebar></app-student-sidebar>
-    </mat-sidenav>
+      <app-student-sidebar
+      [data]="data"
+      [closeSidebarOnLinkClick]="closeSidebarOnLinkClick.bind(this, sidenav)"
+       ></app-student-sidebar>
+      </mat-sidenav>
   
     <!-- Main Content -->
     <div class="flex flex-col h-screen">
@@ -16,8 +19,9 @@
       <app-student-navbar 
         (toggleSidenav)="toggleSidebar(sidenav)"
         [isSidebarOpen]="isSidebarOpen"
+        [data]="data"
       ></app-student-navbar>
-      <div class="flex flex-col px-36  flex-grow ">
+      <div class="flex flex-col px-36 bg-transparent flex-grow ">
         <router-outlet></router-outlet>
       </div>
     </div>

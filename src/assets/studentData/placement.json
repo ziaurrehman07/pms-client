@@ -1,0 +1,15 @@
+{
+    "companies": [
+      { "name": "Company A", "studentsPlaced": 50 },
+      { "name": "Company B", "studentsPlaced": 30 },
+      { "name": "Company C", "studentsPlaced": 20 },
+      { "name": "Company D", "studentsPlaced": 10 }
+    ],
+    "years": [
+      { "year": 2019, "placements": 120 },
+      { "year": 2020, "placements": 150 },
+      { "year": 2021, "placements": 180 },
+      { "year": 2022, "placements": 200 }
+    ]
+  }
+  

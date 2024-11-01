@@ -10,17 +10,16 @@ import { environment } from '../../environments/environment';
 })
 export class AuthService {
   private authApiUrl = environment.authApiUrl;
+  private logoutApiUrl = environment.logoutApiUrl;
   private token: string | null = null;
   private role: string | null = null;
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  // Login method with credentials and headers
   login(email: string, password: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-
     return this.http.post<any>(`${this.authApiUrl}`, 
       { email, password },
       { headers: headers, withCredentials: true }
@@ -50,13 +49,17 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return !!this.token || !!localStorage.getItem('token');
+    const token = this.token || localStorage.getItem('token');
+    return !!token && !this.isTokenExpired(token);
   }
 
-  logout(): void {
-    this.token = null;
-    this.role = null;
-    localStorage.clear();
-    this.router.navigate(['/login']);
+  isTokenExpired(token: string): boolean {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const expiryTime = payload.exp * 1000;
+    return Date.now() > expiryTime;
+  }
+
+  logout(): Observable<any> {
+    return this.http.get(`${this.logoutApiUrl}`, {withCredentials: true}); 
   }
 }

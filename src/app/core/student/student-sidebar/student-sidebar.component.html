@@ -2,7 +2,7 @@
     <div>
         <!-- sidebar content -->
          <ul>
-            <li><a routerLink="dashboard" >Dashboard</a></li>
+            <li><a routerLink="dashboard" routerLinkActive="active" (click)="closeSidebarOnLinkClick()" >Dashboard</a></li>
             <li><a >Active Company</a></li>
             <li><a >Active Jobs</a></li>
          </ul>
@@ -10,9 +10,10 @@
     <div>
         <!-- userprfile -->
          <div class="flex items-center">
-            <img src="" alt="img" class="h-8 w-8 mr-2 rounded-full border">
-          <p class="text-xs"> md Ziaur</p>
+            <!-- <img [src]="data?.avatar" alt="img" class="h-8 w-8 mr-2 rounded-full border">
+          <p class="text-xs">{{data?.fullName}}</p> -->
+          <p>Help</p>
          </div>
     </div>
 </div>
- 
+  
