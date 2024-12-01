@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { finalize, Observable, BehaviorSubject, tap, catchError } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { User, UserResponse } from './user.model';
 import { LoaderService } from '../loading/loading.service';
 import { throwError } from 'rxjs';
+import { ApiResponse, User } from '../../models/student.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,12 +15,12 @@ export class UserService {
 
   constructor(private http: HttpClient, private loaderService: LoaderService) {}
 
-  getActiveUsers(): Observable<UserResponse> {
+  getActiveUsers(): Observable<ApiResponse> {
     this.loaderService.show();
 
-    return this.http.get<UserResponse>(this.apiUrl, { withCredentials: true }).pipe(
-      tap((response: UserResponse) => {
-        this.userDataSubject.next(response.data);
+    return this.http.get<ApiResponse>(this.apiUrl, { withCredentials: true }).pipe(
+      tap((response: ApiResponse) => {
+        this.userDataSubject.next(response?.data);
       }),
       catchError((error) => {
         console.error('Error fetching active users:', error);

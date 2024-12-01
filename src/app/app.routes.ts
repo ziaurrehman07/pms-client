@@ -7,7 +7,7 @@ import { companyGuard } from './guards/company.guard';
 export const routes: Routes = [
   {
     path: 'login',
-    loadComponent: () => import('./core/login/login.component').then(m => m.LoginComponent)
+    loadComponent: () => import('./core/login/login.component').then(m => m.LoginComponent),
   },
   {
     path: 'home',
@@ -29,8 +29,17 @@ export const routes: Routes = [
     canActivate: [studentGuard],
     children: [
       {
+        path: '',
+        loadComponent: () => import('./shared/welcome/welcome.component').then(m => m.WelcomeComponent),
+        // pathMatch: 'full'
+      },
+      {
         path: 'dashboard',
-        loadComponent: () => import('./core/student/dashboard/dashboard.component').then(m => m.DashboardComponent)
+        loadComponent: () => import('./core/student/dashboard/dashboard.component').then(m => m.DashboardComponent),
+      },
+      {
+        path: 'profile',
+        loadComponent: () => import('./core/student/student-profile/student-profile.component').then(m => m.StudentProfileComponent)
       }
     ]
   },

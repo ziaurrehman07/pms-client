@@ -1,14 +1,15 @@
-import { Component, Input } from '@angular/core';
-import { User } from '../../../services/users/user.model';
+import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from '../../../services/users/user.service';
+import {MatTableModule} from '@angular/material/table';
+import { User } from '../../../models/student.model';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [],
+  imports: [MatTableModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   userData: User | null = null;
   isLoading: boolean = true; 
   errorMessage: string | null = null; 

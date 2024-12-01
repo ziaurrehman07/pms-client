@@ -1,16 +1,21 @@
-<div class="flex px-2 py-2 bg-red-400 items-center">
+<div class="fixed z-50 flex px-2 py-2 bg-white w-full items-center">
   <button mat-icon-button (click)="toggleSidenav.emit()">
     <mat-icon [@iconRotate]="isSidebarOpen ? 'open' : 'closed'">
       {{ isSidebarOpen ? 'arrow_back' : 'menu' }}
     </mat-icon>
   </button>
-  <div *ngIf="data" class="ml-4 flex items-center font-sans relative">
-    <img
+  <div *ngIf="data" class="ml-8 flex items-center font-sans relative">
+    <div *ngIf="data.avatar; else defaultAvatar">
+      <img  
       [src]="data.avatar"
       class="w-10 h-10 rounded-full cursor-pointer"
       (click)="toggleDropdown()"
       alt=""
     />
+    </div>
+    <ng-template #defaultAvatar>
+     <img src="assets/user-avatar.svg" alt="avatar" class="w-10 h-10">
+    </ng-template>
     <div class="text-sm">
       <h3>Welcome, <span class="text-blue-500 font-bold">{{ data.fullName }}</span></h3>
       <p class="text-xs -mt-1">Have a nice day</p>
@@ -19,16 +24,6 @@
     <p (click)="logout()" class="text-gray-600 text-xs font-bold cursor-pointer">Log Out</p>
 
     <!-- Dropdown with Slide Animation -->
-    <div
-      *ngIf="isDropdownOpen"
-      @dropdownSlideAnimation
-      class="absolute top-14 -left-10 bg-white shadow-lg rounded-lg w-48 mt-2 z-10 overflow-hidden"
-    >
-      <ul class="text-gray-700">
-        <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Profile</li>
-        <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Settings</li>
-        <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Help</li>
-      </ul>
-    </div>
+  
   </div>
 </div>

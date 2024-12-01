@@ -1,0 +1,29 @@
+{
+  "statusCode": 200,
+  "data": {
+    "_id": "66e6a670779dd9d28d296d83",
+    "fullName": "Ziaur Rehman",
+    "enrollment": "123456789",
+    "email": "student@test.com",
+    "role": "student",
+    "isPlaced": true,
+    "createdAt": "2024-09-15T09:18:40.582Z",
+    "updatedAt": "2024-11-07T11:58:35.528Z",
+    "__v": 0,
+    "avatar": "",
+    "branch": "CIF-3",
+    "college_cgpa": 82,
+    "result_10": 76,
+    "result_12": 78,
+    "designation": {
+      "_id": "66e7244976a08ea216aa4b16",
+      "company": { "_id": "66e6a687779dd9d28d296d88", "name": "Test" },
+      "designation": "NodeJs Developer",
+      "salaryPackage": 6
+    },
+    "mobile": 1234567890,
+    "address": "Rongli"
+  },
+  "message": "User fetched Successfully",
+  "success": true
+}

@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { UserService } from '../../services/users/user.service';
-import { User, UserResponse } from '../../services/users/user.model';
+import { ApiResponse, User } from '../../models/student.model';
 
 @Component({
   selector: 'app-student',
@@ -65,7 +65,7 @@ export class StudentComponent implements OnInit {
 
   loadActiveUsers(): void {
     this.userService.getActiveUsers().subscribe({
-      next: (response: UserResponse) => {
+      next: (response: ApiResponse) => {
         this.data = response.data;
       },
       error: (error) => {

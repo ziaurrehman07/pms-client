@@ -14,16 +14,14 @@
       </mat-sidenav>
   
     <!-- Main Content -->
-    <div class="flex flex-col h-screen">
+    <div class="flex flex-col h-screen flex-grow bg-blend-multiply">
       <!-- Listen for toggle event and toggle sidenav -->
       <app-student-navbar 
         (toggleSidenav)="toggleSidebar(sidenav)"
         [isSidebarOpen]="isSidebarOpen"
         [data]="data"
       ></app-student-navbar>
-      <div class="flex flex-col px-36 bg-transparent flex-grow ">
         <router-outlet></router-outlet>
-      </div>
     </div>
   </mat-sidenav-container>
   

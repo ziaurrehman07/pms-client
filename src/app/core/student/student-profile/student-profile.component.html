@@ -1,0 +1,21 @@
+<div class="h-full py-12 px-4 sm:px-6 lg:px-8 mt-12">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-8">
+        <h1 class="text-md font-bold text-gray-900">Student Profile</h1>
+        <p class="section-title__header mt-2 text-xs text-gray-600">Manage your academic and professional information</p>
+        <div class=""></div>
+      </div>      
+      @if (isEditing) {
+        <app-student-edit 
+          [student]="userData" 
+          
+          (cancelEdit)="toggleEdit()"
+        />
+      } @else {
+        <app-student-details 
+          [student]="userData" 
+          (editProfile)="toggleEdit()"
+        />
+      }
+    </div>
+  </div>

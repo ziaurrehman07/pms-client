@@ -1,12 +1,11 @@
 import { Component, HostListener, input, Input } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { User } from '../../../services/users/user.model';
-import { NgIf } from '@angular/common';
+import { User } from '../../../models/student.model';
 
 @Component({
   selector: 'app-student-sidebar',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, NgIf],
+  imports: [RouterModule,],
   templateUrl: './student-sidebar.component.html',
   styleUrl: './student-sidebar.component.scss'
 })

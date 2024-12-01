@@ -2,14 +2,14 @@ import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
-import { User } from '../../../services/users/user.model';
 import { AuthService } from '../../../services/auth.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { User } from '../../../models/student.model';
 
 @Component({
   selector: 'app-student-navbar',
   standalone: true,
-  imports: [RouterModule, MatIconModule, NgIf, NgFor],
+  imports: [RouterModule, MatIconModule, NgIf],
   templateUrl: './student-navbar.component.html',
   styleUrl: './student-navbar.component.scss',
   animations: [
