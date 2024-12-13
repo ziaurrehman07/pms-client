@@ -11,21 +11,8 @@ import { User } from '../../../models/student.model';
 })
 export class StudentSidebarComponent{
   @Input() isSidebarOpen!: boolean;
-  @Input() data: User | null  = null;
   @Input() closeSidebarOnLinkClick!: () => void;
-  isMobileOrTablet: boolean = false;
 
   constructor() {
-    this.checkIfMobileOrTablet();
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event): void {
-    this.checkIfMobileOrTablet();
-  }
-
-  private checkIfMobileOrTablet(): void {
-    const width = window.innerWidth;
-    this.isMobileOrTablet = width <= 768;
   }
 }

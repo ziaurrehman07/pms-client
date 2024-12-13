@@ -3,45 +3,40 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
 import { AuthService } from '../../../services/auth.service';
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { User } from '../../../models/student.model';
+import { UserService } from '../../../services/users/user.service';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-student-navbar',
   standalone: true,
-  imports: [RouterModule, MatIconModule, NgIf],
+  imports: [RouterModule, MatIconModule, NgIf, MatMenuModule],
   templateUrl: './student-navbar.component.html',
   styleUrl: './student-navbar.component.scss',
-  animations: [
-    trigger('dropdownSlideAnimation', [
-      state('void', style({ transform: 'translateY(-10%)', opacity: 0 })),
-      state('*', style({ transform: 'translateY(0)', opacity: 1 })),
-      transition('void => *', animate('200ms ease-out')),
-      transition('* => void', animate('200ms ease-in'))
-    ]),
-    trigger('iconRotate', [
-      state('closed', style({
-        transform: 'rotate(0deg)'
-      })),
-      state('open', style({
-        transform: 'rotate(180deg)'
-      })),
-      transition('closed <=> open', [
-        animate('0.3s ease-in-out')
-      ])
-    ])
-  ]
 })
 
 export class StudentNavbarComponent {
   @Input() isSidebarOpen!: boolean;
   @Output() toggleSidenav = new EventEmitter<void>();
-  @Input() data: User | null = null;
+  userData: User | null = null;
   token: string | null = localStorage.getItem('token');
   role: string | null = localStorage.getItem('role');
   isDropdownOpen = false;
+  isLoading: boolean = true; 
+  errorMessage: string | null = null; 
 
-  constructor(private authService: AuthService, private router: Router, private eRef: ElementRef) {}
+  constructor(private authService: AuthService, private router: Router, private eRef: ElementRef, private userService: UserService) {}
+  ngOnInit(): void {
+    this.userService.getUserData().subscribe(
+      (data) => {
+        this.userData = data;
+      },
+      (error) => {
+        this.errorMessage = 'Failed to load user data';
+        this.isLoading = false;
+      }
+    );
+  }
 
   toggleSidenavs() {
     this.isSidebarOpen = !this.isSidebarOpen;

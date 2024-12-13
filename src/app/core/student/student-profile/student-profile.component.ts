@@ -18,12 +18,7 @@ export class StudentProfileComponent implements OnInit{
   errorMessage: string | null = null;
   userData: User | null = null;
   isLoading: boolean = true; 
-
-
-
   constructor(private userService: UserService) {}
-
-  
   ngOnInit(): void {
     this.userService.getUserData().subscribe(
       (data) => {
@@ -35,7 +30,6 @@ export class StudentProfileComponent implements OnInit{
       }
     );
   }
-
   toggleEdit(): void {
     this.isEditing = !this.isEditing;
   }

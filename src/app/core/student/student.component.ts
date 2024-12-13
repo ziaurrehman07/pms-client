@@ -4,10 +4,9 @@ import { StudentSidebarComponent } from './student-sidebar/student-sidebar.compo
 import { StudentNavbarComponent } from './student-navbar/student-navbar.component';
 import { CommonModule } from '@angular/common';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { UserService } from '../../services/users/user.service';
 import { ApiResponse, User } from '../../models/student.model';
 
@@ -20,15 +19,6 @@ import { ApiResponse, User } from '../../models/student.model';
   ],
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.scss'],
-  animations: [
-    trigger('iconRotate', [
-      state('open', style({ transform: 'rotate(0deg)' })),
-      state('closed', style({ transform: 'rotate(180deg)' })),
-      transition('open <=> closed', [
-        animate('300ms ease-in-out')
-      ]),
-    ])
-  ]
 })
 export class StudentComponent implements OnInit {
   isMobile: boolean = false;
@@ -40,22 +30,18 @@ export class StudentComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadActiveUsers();
-
-    // Detect if the screen is mobile or desktop
-    this.breakpointObserver.observe([Breakpoints.Handset])
-      .subscribe(result => {
-        this.isMobile = result.matches;
-        this.isSidebarOpen = !this.isMobile;
-      });
+    this.breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
+      this.isMobile = result.matches;
+      if (!this.isMobile) {
+        this.isSidebarOpen = false;
+      }
+    });
   }
-
-  // Toggle sidebar open/close on button click
-  toggleSidebar(sidenav: any): void {
-    sidenav.toggle();
-    this.isSidebarOpen = !this.isSidebarOpen;
+  toggleSidebar(sidenav: MatSidenav): void {
+    if (this.isMobile) {
+      sidenav.toggle();
+    }
   }
-
-  // Close sidebar on link click for mobile only
   closeSidebarOnLinkClick(sidenav: any): void {
     if (this.isMobile) {
       sidenav.close();

@@ -59,4 +59,7 @@
            hover:bg-gray-50 
            focus:ring-gray-500;
   }
+  .formInput {
+    @apply py-1 px-2 font-semibold bg-blue-200 rounded-md text-xs w-full border
+  }
 }

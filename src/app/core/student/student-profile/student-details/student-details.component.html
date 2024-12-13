@@ -1,11 +1,77 @@
-<div class="student-profile">
-  <h2>Student Profile</h2>
-  <div class="profile-info">
-    <p><strong>Name:</strong> {{ student?.fullName }}</p>
-    <p><strong>Age:</strong> {{ student?.enrollment }}</p>
-    <p><strong>Grade:</strong> {{ student?.college_cgpa }}</p>
-    <p><strong>Major:</strong> {{ student?.branch }}</p>
-    <p><strong>GPA:</strong> {{ student?.mobile }}</p>
+  <div class="max-w-[380px] mx-auto relative">
+    <table class="w-full">
+      <button (click)="onCancel()" class="absolute right-4 text-xs text-blue-700 font-semibold flex items-center">
+        <mat-icon class="text-sm">edit</mat-icon>Edit
+      </button>
+    <p class="mb-4"></p>
+      <tbody>
+        <tr>
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">Name:</td>
+          <td class="font-semibold text-sm p-1">{{ student?.fullName }}</td>
+        </tr>
+        <tr>
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">
+            Enrollment:
+          </td>
+          <td class="font-semibold text-sm p-1">{{ student?.enrollment }}</td>
+        </tr>
+        <tr>
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">Email:</td>
+          <td class="font-semibold text-sm p-1">{{ student?.email }}</td>
+        </tr>
+        <tr>
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">Branch:</td>
+          <td class="font-semibold text-sm p-1">{{ student?.branch }}</td>
+        </tr>
+        <tr>
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">
+            Class X %:
+          </td>
+          <td class="font-semibold text-sm p-1">{{ student?.result_10 }}</td>
+        </tr>
+        <tr>
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">
+            Class XII %:
+          </td>
+          <td class="font-semibold text-sm p-1">{{ student?.result_12 }}</td>
+        </tr>
+        <tr>
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">
+            UG Result %:
+          </td>
+          <td class="font-semibold text-sm p-1">{{ student?.college_cgpa }}</td>
+        </tr>
+        <tr>
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">Mobile:</td>
+          <td class="font-semibold text-sm p-1">{{ student?.mobile }}</td>
+        </tr>
+        <tr *ngIf="student?.isPlaced">
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">
+            Company Name:
+          </td>
+          <td class="font-semibold text-green-500 text-sm p-1">
+            {{ student?.designation?.company?.name }}
+          </td>
+        </tr>
+        <tr *ngIf="student?.isPlaced">
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">
+            Designation:
+          </td>
+          <td class="font-semibold text-green-500 text-sm p-1">
+            {{ student?.designation?.designation }}
+          </td>
+        </tr>
+        <tr *ngIf="student?.isPlaced">
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">Package:</td>
+          <td class="font-semibold text-green-500 text-sm p-1">
+            {{ student?.designation?.salaryPackage }} LPA
+          </td>
+        </tr>
+        <tr>
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">Address:</td>
+          <td class="font-semibold text-sm p-1">{{ student?.address }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</div>
 

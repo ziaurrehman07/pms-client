@@ -1,6 +1,9 @@
+.sidenav {
+  width: 250px; /* Adjust as needed */
+}
+
+@media (min-width: 768px) {
   .sidenav {
-    width: 250px;
+    display: none;
   }
-body{
-  background-color: red;
 }
