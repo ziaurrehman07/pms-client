@@ -2,8 +2,29 @@
   width: 250px; /* Adjust as needed */
 }
 
+// @media (min-width: 768px) {
+//   .sidenav {
+//     display: none;
+//   }
+// }
+/* Hide the sidebar toggle button and sidebar in desktop view */
 @media (min-width: 768px) {
-  .sidenav {
-    display: none;
+  mat-sidenav {
+    display: none !important;
+  }
+
+  button[mat-icon-button] {
+    display: none !important;
+  }
+}
+
+/* Make the sidenav and toggle button visible in mobile view */
+@media (max-width: 767px) {
+  mat-sidenav {
+    display: block;
+  }
+
+  button[mat-icon-button] {
+    display: block;
   }
 }

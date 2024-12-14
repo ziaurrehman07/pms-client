@@ -1,20 +1,19 @@
 <mat-sidenav-container class="h-screen md:hidden lg:hidden">
   <!-- Sidebar -->
   <mat-sidenav
-    #sidenav
-    [mode]="isMobile ? 'over' : 'side'"
-    [opened]="!isMobile && isSidebarOpen" 
+    #mobileSidebar
+    mode="over"
     class="sidenav"
   >
     <app-student-sidebar
-      [closeSidebarOnLinkClick]="closeSidebarOnLinkClick.bind(this, sidenav)"
+      [closeSidebarOnLinkClick]="closeSidebarOnLinkClick.bind(this, mobileSidebar)"
     ></app-student-sidebar>
   </mat-sidenav>
 
   <!-- Main Content -->
   <div class="flex flex-col h-screen flex-grow">
     <app-student-navbar 
-      (toggleSidenav)="toggleSidebar(sidenav)"
+      (toggleSidenav)="toggleSidebar()"
       [isSidebarOpen]="isSidebarOpen"
     ></app-student-navbar>
     <div class="p-3 mt-24">

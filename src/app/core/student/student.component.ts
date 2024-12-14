@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { StudentSidebarComponent } from './student-sidebar/student-sidebar.component';
 import { StudentNavbarComponent } from './student-navbar/student-navbar.component';
@@ -25,6 +25,8 @@ export class StudentComponent implements OnInit {
   isSidebarOpen: boolean = true;
   data: User | null = null;
   errorMessage: string | null = null;
+  @ViewChild('mobileSidebar') mobileSidebar!: MatSidenav;
+
 
   constructor(private breakpointObserver: BreakpointObserver, private userService: UserService) {}
 
@@ -37,10 +39,8 @@ export class StudentComponent implements OnInit {
       }
     });
   }
-  toggleSidebar(sidenav: MatSidenav): void {
-    if (this.isMobile) {
-      sidenav.toggle();
-    }
+  toggleSidebar(): void {
+    this.mobileSidebar.toggle();
   }
   closeSidebarOnLinkClick(sidenav: any): void {
     if (this.isMobile) {
