@@ -38,10 +38,6 @@ export class UserService {
     return this.userDataSubject.asObservable();
   }
 
-  getPlacementDetails(): Observable<any> {
-    return this.http.get('/assets/studentData/student-placement-data.json');
-  }
-
   updateUserProfile(updatedData: any): Observable<any> {
     // this.loaderService.show();
     return this.http.patch(this.userUpdateApiUrl, updatedData, { withCredentials: true }).pipe(
@@ -67,9 +63,5 @@ export class UserService {
 
   updateUserAvatar(updatedProfile: any): Observable<any> {
     return this.http.put<any>(this.userAvatarApiUrl, updatedProfile, { withCredentials: true });
-  }
-  // setUserProfile(profile: any): void {
-  //   this.userDataSubject.next(profile);
-  // }
-  
+  }  
 }

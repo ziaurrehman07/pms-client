@@ -40,6 +40,10 @@ export const routes: Routes = [
       {
         path: 'profile',
         loadComponent: () => import('./core/student/student-profile/student-profile.component').then(m => m.StudentProfileComponent)
+      },
+      {
+        path: 'job',
+        loadComponent: () => import('./core/student/job-updates/job-updates.component').then(m => m.JobUpdatesComponent)
       }
     ]
   },

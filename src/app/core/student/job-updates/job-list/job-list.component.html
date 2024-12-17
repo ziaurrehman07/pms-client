@@ -1,0 +1,14 @@
+<div *ngIf="jobs.length > 0; else noJobs">
+    <ul class="space-y-2">
+      <li
+        *ngFor="let job of jobs"
+        class="p-4 border rounded-lg shadow cursor-pointer hover:bg-gray-50"
+        (click)="selectedJob(job._id)"
+      >
+        {{ job.company.name }}
+      </li>
+    </ul>
+  </div>
+  <ng-template #noJobs>
+    <p class="text-sm text-gray-500">No jobs available at the moment.</p>
+  </ng-template>

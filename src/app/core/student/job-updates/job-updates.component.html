@@ -1,0 +1,19 @@
+ <div class="sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-8">
+        <h1 class="text-md font-bold text-gray-900">Job List</h1>
+        <p class="section-title__header mt-2 text-xs text-gray-600">Jobs Tailored to Kickstart Your Career Journey</p>
+      </div>      
+      @if (selectedJob) {
+        <app-job-details
+        [job]="selectedJob" 
+        (back)="clearSelection()"
+        />
+      } @else {
+        <app-job-list
+        (selectJob)="fetchJobDetails($event)"
+        [jobs]="jobs"
+        />
+      }
+    </div>
+  </div>

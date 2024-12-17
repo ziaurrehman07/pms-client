@@ -17,14 +17,17 @@ export class DashboardComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.userService.getUserData().subscribe(
-      (data) => {
+    this.userService.getUserData().subscribe({
+      next: (data) => {
         this.userData = data;
       },
-      (error) => {
+      error: (error) => {
         this.errorMessage = 'Failed to load user data';
         this.isLoading = false;
+      },
+      complete: () => {
+        console.log('User data loaded successfully.');
       }
-    );
+    });    
   }
 }

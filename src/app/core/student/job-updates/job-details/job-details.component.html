@@ -1,0 +1,11 @@
+<div class="p-4 border rounded-lg shadow">
+    <h2 class="text-lg font-bold">{{ job?.company.name }}</h2>
+    <p class="text-sm text-gray-600">{{ job?.criteria_12 }}</p>
+    <p class="text-sm text-gray-500 mt-2">Location: {{ job?.location }}</p>
+    <button
+      class="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+      (click)="goBack()"
+    >
+      Back to Job List
+    </button>
+  </div>
