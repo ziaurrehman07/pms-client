@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { JobService } from './job.service';
-import { NgFor, NgIf } from '@angular/common';
 import { JobListComponent } from "./job-list/job-list.component";
 import { JobDetailsComponent } from "./job-details/job-details.component";
 

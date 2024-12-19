@@ -1,11 +1,90 @@
-<div class="p-4 border rounded-lg shadow">
-    <h2 class="text-lg font-bold">{{ job?.company.name }}</h2>
-    <p class="text-sm text-gray-600">{{ job?.criteria_12 }}</p>
-    <p class="text-sm text-gray-500 mt-2">Location: {{ job?.location }}</p>
-    <button
-      class="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-      (click)="goBack()"
-    >
-      Back to Job List
-    </button>
+  <!-- Display Success Message -->
+  <div *ngIf="successMessage" class="bg-green-600 p-2 text-gray-100 text-xs px-5 flex justify-between mb-2 -mt-6">
+    {{ successMessage }}
+    <span class="cursor-pointer text-white hover:rounded-sm font-bold duration-500 hover:text-green-800 hover:bg-gray-50 px-1" (click)="clearErrorMessage()">X</span>
   </div>
+  <!-- Display Error Message -->
+  <div *ngIf="errorMessage" class="bg-red-600 p-2 text-gray-100 text-xs px-5 flex justify-between mb-2 -mt-6">
+     {{ errorMessage}}
+    <span class="cursor-pointer text-white hover:rounded-sm font-bold duration-500 hover:text-red-800 hover:bg-gray-50 px-1" (click)="clearErrorMessage()">X</span>
+  </div>
+<div class="max-w-[440px] mx-auto relative">
+ <div class="flex cursor-pointer" (click)="goBack()">
+  <img src="assets/images/back-arrow.svg" class="w-5" alt="">
+  <button
+  class="border back-arrow hover:bg-[#14498f] hover:text-white rounded-[4px] text-xs font-bold px-2 py-1"
+>
+  Back to Job List
+</button>
+ </div>
+    <div class="flex justify-center mx-auto">
+      <img [src]="job.company.avatar || 'assets/images/company-avatar.svg'"
+      class="w-24 h-23 object-cover rounded-t-xl"
+      alt="">
+     </div>
+    <table class="w-full">
+      <tbody>
+        <tr class="bg-[#14498f] text-white">
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">Company Name:</td>
+          <td class="font-semibold text-sm p-1">{{ job?.company.name }}</td>
+        </tr>
+        <tr>
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">
+            Designation:
+          </td>
+          <td class="font-semibold text-sm p-1">{{ job?.designation }}</td>
+        </tr>
+        <tr>
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">Company website:</td>
+          <td class="font-semibold text-sm p-1 text-blue-600 hover:underline">
+            <a
+            target="_blank"
+            href={{job.company.website}}
+          >
+            Open link
+          </a></td>
+        </tr>
+        <tr>
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">Salary Package(in Lakhs):</td>
+          <td class="font-semibold text-sm p-1">{{ job?.salaryPackage }}</td>
+        </tr>
+        <tr>
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">
+            10th criteria %:
+          </td>
+          <td class="font-semibold text-sm p-1">{{ job?.criteria_10 }}</td>
+        </tr>
+        <tr>
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">
+            12th criteria %:
+          </td>
+          <td class="font-semibold text-sm p-1">{{ job?.criteria_12 }}</td>
+        </tr>
+        <tr>
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">
+            UG criteria %:
+          </td>
+          <td class="font-semibold text-sm p-1">{{ job?.criteria_cllg_cgpa }}</td>
+        </tr>
+        <tr>
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">Last submission date:</td>
+          <td class="font-semibold text-sm p-1">{{ job?.lastDate | date: 'mediumDate' }}</td>
+        </tr>
+        <tr>
+          <td class="font-semibold text-sm p-1 whitespace-nowrap">Description:</td>
+          <td class="font-semibold text-sm p-1 text-blue-600">{{ job?.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="flex justify-between items-center mt-5">
+     
+    <button
+    [disabled]="disableApplyButton"
+    (click)="ApplyForJob(job._id)"
+    class="apply-button"
+  >
+   Apply for this Role
+  </button>
+    </div>
+  </div>
+

@@ -1,4 +1,4 @@
-<div class="fixed z-50 flex items-center justify-between px-4 py-2 bg-[#14498f] w-full shadow-md">
+<div class="fixed z-50 flex items-center justify-between px-4 py-2 bg-[#14498f] text-gray-100 w-full shadow-md">
   <!-- Left Logo -->
   <div class="flex items-center gap-2">
     <button class="lg:hidden md:hidden" (click)="toggleSidenav.emit()">
@@ -17,15 +17,10 @@
       <li>
         <a routerLink="profile" routerLinkActive="active">Profile</a>
       </li>
+      <li>
+        <a routerLink="job" routerLinkActive="active">Job</a>
+      </li>
     </ul>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="job" routerLinkActive="active">Job List</button>
-      <button mat-menu-item>Company List</button>
-    </mat-menu>
-    <button mat-icon-button [matMenuTriggerFor]="menu" class="flex items-center gap-1">
-      <span>Company</span>
-      <mat-icon>keyboard_arrow_down</mat-icon>
-    </button>
   </div>
 
   <!-- Right User Info -->

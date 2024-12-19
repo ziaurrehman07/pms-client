@@ -1,14 +1,63 @@
 <div *ngIf="jobs.length > 0; else noJobs">
-    <ul class="space-y-2">
-      <li
-        *ngFor="let job of jobs"
-        class="p-4 border rounded-lg shadow cursor-pointer hover:bg-gray-50"
-        (click)="selectedJob(job._id)"
-      >
-        {{ job.company.name }}
-      </li>
-    </ul>
+  <div class="text-[#14498f] text-xs font-extrabold"><p>Total Job, {{jobs.length}}</p></div>
+  <div class="overflow-x-auto">
+    <table class="table-auto w-full text-sm text-gray-800 border-collapse h-7">
+      <thead class="bg-[#14498f] text-white">
+        <tr>
+          <th class="px-3 py-2 text-left text-xs font-semibold text-nowrap tracking-tight">Company Name</th>
+          <th class="px-3 py-2 text-left text-xs font-semibold text-nowrap tracking-tight">Position</th>
+          <th class="px-3 py-2 text-left text-xs font-semibold text-nowrap tracking-tight">Package</th>
+          <th class="px-3 py-2 text-left text-xs font-semibold text-nowrap tracking-tight">Job posted On</th>
+          <th
+            class="px-3 py-2 text-center text-xs font-semibold text-nowrap sticky right-0 bg-gradient-to-r from-blue-100 to-blue-200 z-10"
+          >
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let job of jobs"
+          class="hover:bg-blue-200 odd:bg-gray-200 even:bg-gray-50"
+        >
+          <td class="px-3 py-2 flex items-center space-x-2">
+            <img
+              [src]="job.company.avatar || 'assets/images/company-avatar.svg'"
+              alt="Logo"
+              class="w-8 h-8 rounded-full object-cover"
+            />
+            <span class="font-medium">{{ job.company.name }}</span>
+          </td>
+          <td class="px-3 py-2">{{ job.designation }}</td>
+          <td class="px-3 py-2 text-green-600 font-semibold">
+            {{ job.salaryPackage }}
+          </td>
+          <td class="px-3 py-2 text-gray-600">
+            {{ job.createdAt | date: 'mediumDate' }}
+          </td>
+          <td
+            class="px-3 py-2 text-center sticky right-0 bg-gradient-to-r from-blue-100 to-blue-200 z-10"
+          >
+            <button
+              class="bg-[#14498f] text-white px-3 py-2 rounded-md shadow-md hover:bg-blue-800 transition duration-200"
+              (click)="selectedJob(job._id)"
+            >
+              See Details
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <ng-template #noJobs>
-    <p class="text-sm text-gray-500">No jobs available at the moment.</p>
-  </ng-template>
+</div>
+
+<ng-template #noJobs>
+  <div class="text-center mt-8">
+    <img
+      src="assets/images/noJobAvailable.svg"
+      alt="No Jobs Available"
+      class="flex max-w-[300px] mx-auto opacity-80"
+    />
+    <p class="text-sm text-gray-500 mt-4 font-medium">No jobs available at the moment.</p>
+  </div>
+</ng-template>

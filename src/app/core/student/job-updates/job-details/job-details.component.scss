@@ -1,0 +1,22 @@
+.apply-button {
+    background-color: #14498f;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 4px;
+    padding: 4px 8px;
+    border: 1px solid transparent;
+    transition: background-color 0.3s ease, cursor 0.3s ease;
+  
+    &:hover:not(:disabled) {
+      background-color: #1e5bbf;
+    }
+  
+    &:disabled {
+      background-color: #ccc;
+      color: #777;
+      cursor: not-allowed;
+      border-color: #999;
+    }
+  }
+  

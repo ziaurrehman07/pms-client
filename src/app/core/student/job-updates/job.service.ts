@@ -12,6 +12,7 @@ export class JobService {
   private jobDetailsByID = `${environment.companyURLs.jobDetailsById}`;
   private jobsCache$: Observable<any> | null = null;
   private jobDetailsCache: Map<string, Observable<any>> = new Map();
+  private applyJobs = `${environment.companyURLs.applyJobs}`
 
   constructor(private http: HttpClient) {}
 
@@ -31,5 +32,8 @@ export class JobService {
       this.jobDetailsCache.set(jobId, jobDetails$);
     }
     return this.jobDetailsCache.get(jobId)!;
+}
+applyJob(jobId: string): Observable<any> {
+  return this.http.get(`${this.applyJobs}/${jobId}`, { withCredentials: true });
 }
 }

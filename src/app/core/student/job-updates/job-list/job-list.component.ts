@@ -1,11 +1,10 @@
-import { Component, EventEmitter, Input, input, OnInit, Output } from '@angular/core';
-import { JobService } from '../job.service';
-import { NgFor, NgIf } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CurrencyPipe, DatePipe, NgFor, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-job-list',
   standalone: true,
-  imports: [NgIf, NgFor],
+  imports: [NgIf, NgFor, DatePipe],
   templateUrl: './job-list.component.html',
   styleUrl: './job-list.component.scss'
 })
