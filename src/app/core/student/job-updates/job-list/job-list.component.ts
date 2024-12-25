@@ -11,6 +11,7 @@ import { CurrencyPipe, DatePipe, NgFor, NgIf} from '@angular/common';
 export class JobListComponent {
   @Output() selectJob = new EventEmitter<string>();
   @Input() jobs: any[] = [];
+  @Input() isLoading: boolean = false;
 
   selectedJob(jobId: string): void {
     this.selectJob.emit(jobId);

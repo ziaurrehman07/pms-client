@@ -13,6 +13,7 @@
         <app-job-list
         (selectJob)="fetchJobDetails($event)"
         [jobs]="jobs"
+        [isLoading]="isLoading"
         />
       }
     </div>

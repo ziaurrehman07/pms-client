@@ -62,6 +62,6 @@ export class UserService {
   }
 
   updateUserAvatar(updatedProfile: any): Observable<any> {
-    return this.http.put<any>(this.userAvatarApiUrl, updatedProfile, { withCredentials: true });
+    return this.http.patch<any>(this.userAvatarApiUrl, updatedProfile, { withCredentials: true });
   }  
 }

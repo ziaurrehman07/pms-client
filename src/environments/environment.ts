@@ -4,12 +4,11 @@ export const environment = {
     logoutApiUrl: 'http://localhost:8000/api/v1/users/log-out-user',
     userApiUrl: 'http://localhost:8000/api/v1/users/get-user',
     userUpdateUrl: 'http://localhost:8000/api/v1/users/update-student-account-details',
-    userAvatarUrl: '',
+    userAvatarUrl: 'http://localhost:8000/api/v1/users/update-user-avatar',
     companyURLs: {
       jobListUrl: 'http://localhost:8000/api/v3/companies/job/get-all-jobs',
       jobDetailsById: 'http://localhost:8000/api/v3/companies/job/get-job-details',
       applyJobs: 'http://localhost:8000/api/v3/companies/job/apply-for-job'
     }
-    // userApiUrl: '/assets/mock/user.json'
   };
   
